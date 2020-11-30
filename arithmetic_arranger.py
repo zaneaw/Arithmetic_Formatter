@@ -9,8 +9,10 @@ toprow = list()
 operator = list()
 botrow = list()
 botrowprint = list()
-#problems = ["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"]
-problems = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
+dashes = list()
+problem_answer = list()
+problems = ["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"]
+#problems = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
 for problem in problems:
     problem = problem.rstrip()
     problem = problem.split()
@@ -21,17 +23,22 @@ for problem in problems:
 count = 0
 for number in toprow:
     operator[count] = operator[count] + ' '
-    if len(toprow[count]) < len(botrow[count]):
+    if len(toprow[count]) < len(botrow[count]) + len(operator[count]) and len(toprow[count]) > len(botrow[count]):
+        botrow[count] = ' ' + botrow[count]
         while len(toprow[count]) < len(botrow[count]) + len(operator[count]):
             toprow[count] = ' ' + toprow[count]
-    elif len(toprow[count]) > len(botrow[count]):
-        operator[count] = operator[count] + ' '
+    elif len(toprow[count]) <= len(botrow[count]):
         while len(toprow[count]) < len(botrow[count]) + len(operator[count]):
             toprow[count] = ' ' + toprow[count]
-    elif len(toprow[count]) == len(botrow[count]):
-        while len(toprow[count]) < len(botrow[count]) + len(operator[count]):
+    elif len(toprow[count]) > len(botrow[count]) + len(operator[count]):
+        while len(toprow[count]) > len(botrow[count]) + len(operator[count]):
+            botrow[count] = ' ' + botrow[count]
+            operator[count] = operator[count] + ' '
             toprow[count] = ' ' + toprow[count]
-    toprow[count] = toprow[count] + (' ' * 4)
+    dashes.append('-' * len(toprow[count]))
+    toprow[count] += ' ' * 4
+    botrow[count] += ' ' * 4
+    dashes[count] += ' ' * 4
     count += 1
 
 count = 0
@@ -39,15 +46,14 @@ for number in toprow:
     botrowprint.append(operator[count] + botrow[count])
     count += 1
 
-print(f'{toprow}\n{botrowprint}')
+print(f'{toprow}\n{botrowprint}\n{dashes}')
 
 count = 0
 for num in toprow[:]:
-    print(f"{toprow[count]}\n{botrowprint[count]}")
+    print(f"{toprow[count]}\n{botrowprint[count]}\n{dashes[count]}")
     count += 1
 
 # TO DO
 # print in one line
-# ======= -------- length alg
 # ======= sum alg
 # ======= try, except statements
