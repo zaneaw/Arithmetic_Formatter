@@ -31,10 +31,9 @@ for number in toprow:
         while len(toprow[count]) < len(botrow[count]) + len(operator[count]):
             toprow[count] = ' ' + toprow[count]
     elif len(toprow[count]) > len(botrow[count]) + len(operator[count]):
+        toprow[count] = 'xx' + toprow[count]
         while len(toprow[count]) > len(botrow[count]) + len(operator[count]):
-            botrow[count] = ' ' + botrow[count]
-            operator[count] = operator[count] + ' '
-            toprow[count] = ' ' + toprow[count]
+            operator[count] = operator[count] + 'x'
     dashes.append('-' * len(toprow[count]))
     toprow[count] += ' ' * 4
     botrow[count] += ' ' * 4
